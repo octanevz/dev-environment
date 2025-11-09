@@ -27,6 +27,8 @@ sudo apt update -y \
       libssl3 \
       libstdc++6 \
       lsb-release \
+      mesa-utils \
+      neofetch \
       unzip \
       wget \
       zlib1g \
