@@ -68,4 +68,4 @@ fi
 log "Applying changes...";
 zsh -c "source ~/.zshrc";
 
-log "Oh My Zsh installation completed with autosuggestions and syntax highlighting enabled!";
+log "Oh My Zsh installation completed with autosuggestions, syntax highlighting and autocomplete enabled!";
