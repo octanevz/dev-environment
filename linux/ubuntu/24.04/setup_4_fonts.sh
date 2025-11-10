@@ -4,6 +4,7 @@ set -e;
 # -------------------------------------
 # Powerline Fonts and TTF MS Core Fonts
 # -------------------------------------
+echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections;
 sudo apt update -y \
   && sudo apt upgrade -y \
   && sudo apt install -y \
