@@ -11,6 +11,7 @@ sudo apt update -y \
       gimp \
       git \
       gnome-keyring \
+      gnome-shell-extension-manager \
       gnome-shell-extensions \
       gnome-tweaks \
       gpg \
@@ -29,6 +30,7 @@ sudo apt update -y \
       lsb-release \
       mesa-utils \
       neofetch \
+      open-vm-tools-desktop \
       unzip \
       wget \
       zlib1g \
@@ -40,6 +42,3 @@ sudo apt update -y \
 
 # Install/Update Snap Packages
 sudo snap refresh;
-
-# Reboot OS
-sudo reboot now;
