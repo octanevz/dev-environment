@@ -5,6 +5,7 @@ set -e;
 # This script performs the following tasks:
 # - Updates the OS and installs required packages
 # - Installs Docker Engine and Containerd
+# - Installs Google Chrome
 # - Installs Visual Studio Code
 # - Installs Oh My Zsh with autosuggestions and syntax highlighting plugins
 # - Optionally reboots the system after installation
@@ -27,6 +28,8 @@ sudo apt update -y \
         gnome-shell-extension-manager \
         gnome-shell-extensions \
         gnome-tweaks \
+        gnupg \
+        gnupg2 \
         gpg \
         libc6 \
         libfontconfig1 \
@@ -82,6 +85,39 @@ sudo apt -y install docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 # Post-installation steps: manage Docker as a non-root user
 sudo groupadd docker || true;
 sudo usermod -aG docker $USER;
+
+# ---------------------
+# Install Google Chrome
+# ---------------------
+
+# Add Google signing key and repository
+echo "Downloading and installing Google signing key...";
+wget -qO- https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor > google-chrome.gpg;
+sudo install -D -o root -g root -m 644 google-chrome.gpg /usr/share/keyrings/google-chrome.gpg;
+rm -f google-chrome.gpg;
+
+# Add Google Chrome repository to sources list
+echo "Creating deb822-style source file for Google Chrome...";
+sudo tee /etc/apt/sources.list.d/google-chrome.sources <<EOF
+Types: deb
+URIs: http://dl.google.com/linux/chrome/deb/
+Suites: stable
+Components: main
+Architectures: amd64
+Signed-By: /usr/share/keyrings/google-chrome.gpg
+EOF
+
+# Update package list
+echo "Updating package list with Google repository...";
+sudo apt update -y;
+
+# Install Google Chrome stable version
+echo "Installing Google Chrome (stable)...";
+sudo apt install -y google-chrome-stable;
+
+# Verify installation
+echo "Google Chrome installation completed successfully!";
+google-chrome --version;
 
 # --------------------------
 # Install Visual Studio Code
