@@ -46,6 +46,7 @@ sudo apt update -y \
         mesa-utils \
         open-vm-tools-desktop \
         unzip \
+        uuid-runtime \
         wget \
         zlib1g \
         zsh \
